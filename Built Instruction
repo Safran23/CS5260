@@ -1,0 +1,18 @@
+First we need to get the JSON file from Bucket 2.
+s3.download_file('usu-cs5250-water2-requests', '1695786989229', '1695786989229.json')
+Then we need to extract specific information from that.
+data = json.load(f)
+data
+d['widgetId'] = data['widgetId']
+d['owner'] = data['owner']
+d['label'] = data ['label']
+d['description'] = data['description']
+
+Convert it again to json.
+with open(d['widgetId'], "w") as outfile:
+json.dump(outfile)
+
+#Saving it to Bucket 3
+
+bucket_name = 'usu-cs5250-water3-web'
+s3.upload_file('1695786989229.json', bucket_name, 'json1')
